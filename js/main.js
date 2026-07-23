@@ -1,6 +1,32 @@
 (() => {
   'use strict';
 
+  /* ---------- Hero glyph parallax ---------- */
+  const heroSection = document.getElementById('hero');
+  const heroGlyph = document.getElementById('hero-glyph');
+  const canParallax = window.matchMedia('(hover: hover) and (pointer: fine)').matches
+    && !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (heroSection && heroGlyph && canParallax) {
+    let ticking = false;
+    let lastEvent = null;
+    heroSection.addEventListener('pointermove', (e) => {
+      lastEvent = e;
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        const rect = heroSection.getBoundingClientRect();
+        const relX = (lastEvent.clientX - rect.left) / rect.width - 0.5;
+        const relY = (lastEvent.clientY - rect.top) / rect.height - 0.5;
+        heroGlyph.style.transform = `rotate(${-6 + relX * 3}deg) translate(${relX * -14}px, ${relY * -10}px)`;
+        ticking = false;
+      });
+    });
+    heroSection.addEventListener('pointerleave', () => {
+      heroGlyph.style.transform = 'rotate(-6deg)';
+    });
+  }
+
   /* ---------- Sticky header ---------- */
   const header = document.getElementById('site-header');
   const onScroll = () => {
