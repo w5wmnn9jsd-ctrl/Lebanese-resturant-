@@ -441,34 +441,63 @@ address { font-style: normal; }
   position: relative;
 }
 .menu-tabs {
+  position: relative;
   display: flex;
   justify-content: center;
   gap: 0.6rem;
   flex-wrap: wrap;
   margin-bottom: 2.8rem;
 }
+.tab-indicator {
+  position: absolute;
+  top: 0; left: 0;
+  width: 0; height: 0;
+  border-radius: 999px;
+  background: var(--teal);
+  transition: top 320ms var(--ease), left 320ms var(--ease), width 320ms var(--ease), height 320ms var(--ease);
+  z-index: 0;
+  pointer-events: none;
+}
 .menu-tab {
+  position: relative;
+  z-index: 1;
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
   padding: 0.7rem 1.4rem;
   border-radius: 999px;
   border: 2px solid var(--sand-deep);
+  background: transparent;
   color: #6b5f4d;
   font-weight: 600;
   font-size: 0.92rem;
-  transition: all var(--fast) var(--ease);
+  transition: color var(--fast) var(--ease), border-color var(--fast) var(--ease), transform var(--fast) var(--ease);
 }
 .menu-tab svg { width: 18px; height: 18px; }
 .menu-tab:hover { border-color: var(--terracotta); color: var(--terracotta-dark); }
+.menu-tab:active { transform: scale(0.96); }
 .menu-tab.is-active {
-  background: var(--teal);
-  border-color: var(--teal);
+  border-color: transparent;
   color: var(--cream);
 }
 
 .menu-panel { max-width: 880px; margin-inline: auto; }
 .menu-panel[hidden] { display: none; }
+.menu-panel {
+  transition: opacity 200ms var(--ease), transform 200ms var(--ease);
+}
+.menu-panel.is-leaving {
+  opacity: 0;
+  transform: translateY(-10px);
+  pointer-events: none;
+}
+.menu-panel.is-active {
+  animation: menuPanelIn 320ms var(--ease);
+}
+@keyframes menuPanelIn {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: translateY(0); }
+}
 
 .menu-subhead {
   font-size: 1.05rem;
@@ -484,8 +513,22 @@ address { font-style: normal; }
 .menu-list li {
   padding-block: 1rem;
   border-bottom: 1px dashed var(--sand-deep);
+  opacity: 0;
+  transform: translateY(10px);
 }
 .menu-list li:last-child { border-bottom: none; }
+.menu-panel.is-active .menu-list li {
+  animation: menuItemIn 420ms var(--ease) forwards;
+}
+.menu-panel.is-active .menu-list li:nth-child(1) { animation-delay: 20ms; }
+.menu-panel.is-active .menu-list li:nth-child(2) { animation-delay: 60ms; }
+.menu-panel.is-active .menu-list li:nth-child(3) { animation-delay: 100ms; }
+.menu-panel.is-active .menu-list li:nth-child(4) { animation-delay: 140ms; }
+.menu-panel.is-active .menu-list li:nth-child(5) { animation-delay: 180ms; }
+.menu-panel.is-active .menu-list li:nth-child(6) { animation-delay: 220ms; }
+@keyframes menuItemIn {
+  to { opacity: 1; transform: translateY(0); }
+}
 .menu-item-head {
   display: flex;
   align-items: baseline;
