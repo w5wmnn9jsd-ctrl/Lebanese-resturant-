@@ -55,23 +55,66 @@
     revealEls.forEach((el) => el.classList.add('is-visible'));
   }
 
-  /* ---------- Menu tabs (ARIA tablist pattern) ---------- */
+  /* ---------- Menu tabs (ARIA tablist pattern, animated filter) ---------- */
   const tabs = Array.from(document.querySelectorAll('.menu-tab'));
   const panels = Array.from(document.querySelectorAll('.menu-panel'));
+  const tabIndicator = document.querySelector('.tab-indicator');
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const LEAVE_MS = prefersReducedMotion ? 0 : 180;
+
+  function moveIndicator(tab) {
+    if (!tabIndicator) return;
+    tabIndicator.style.top = `${tab.offsetTop}px`;
+    tabIndicator.style.left = `${tab.offsetLeft}px`;
+    tabIndicator.style.width = `${tab.offsetWidth}px`;
+    tabIndicator.style.height = `${tab.offsetHeight}px`;
+  }
 
   function activateTab(tab) {
+    if (tab.classList.contains('is-active')) return;
+
     tabs.forEach((t) => {
       const active = t === tab;
       t.classList.toggle('is-active', active);
       t.setAttribute('aria-selected', String(active));
       t.tabIndex = active ? 0 : -1;
     });
-    panels.forEach((panel) => {
-      const match = panel.id === tab.getAttribute('aria-controls');
-      panel.classList.toggle('is-active', match);
-      match ? panel.removeAttribute('hidden') : panel.setAttribute('hidden', '');
+    moveIndicator(tab);
+
+    const targetPanel = panels.find((p) => p.id === tab.getAttribute('aria-controls'));
+    const outgoingPanel = panels.find((p) => p.classList.contains('is-active') && p !== targetPanel);
+
+    const reveal = () => {
+      panels.forEach((p) => p.classList.remove('is-leaving'));
+      if (outgoingPanel) {
+        outgoingPanel.classList.remove('is-active');
+        outgoingPanel.setAttribute('hidden', '');
+      }
+      targetPanel.removeAttribute('hidden');
+      targetPanel.classList.add('is-active');
+    };
+
+    if (outgoingPanel && !prefersReducedMotion) {
+      outgoingPanel.classList.add('is-leaving');
+      window.setTimeout(reveal, LEAVE_MS);
+    } else {
+      reveal();
+    }
+  }
+
+  // Set the indicator's initial position (no transition on first paint)
+  const initialTab = document.querySelector('.menu-tab.is-active');
+  if (initialTab && tabIndicator) {
+    tabIndicator.style.transition = 'none';
+    moveIndicator(initialTab);
+    requestAnimationFrame(() => {
+      tabIndicator.style.transition = '';
     });
   }
+  window.addEventListener('resize', () => {
+    const active = document.querySelector('.menu-tab.is-active');
+    if (active) moveIndicator(active);
+  });
 
   tabs.forEach((tab, i) => {
     tab.addEventListener('click', () => activateTab(tab));
