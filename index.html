@@ -51,61 +51,39 @@
 
   <!-- ================= HERO ================= -->
   <section id="hero" class="hero" aria-label="Introduction">
-    <div class="hero-sky" aria-hidden="true">
-      <svg class="sunburst" viewBox="0 0 400 400" aria-hidden="true">
-        <circle cx="200" cy="200" r="70" fill="url(#sunGradient)"/>
-        <g stroke="#E4C878" stroke-width="2" opacity="0.55">
-          <circle cx="200" cy="200" r="100" fill="none"/>
-          <circle cx="200" cy="200" r="130" fill="none"/>
-          <circle cx="200" cy="200" r="160" fill="none"/>
-        </g>
-        <g stroke="#E4C878" stroke-width="2.5" opacity="0.7">
-          <line x1="200" y1="10" x2="200" y2="60" />
-          <line x1="200" y1="390" x2="200" y2="340" />
-          <line x1="10" y1="200" x2="60" y2="200" />
-          <line x1="390" y1="200" x2="340" y2="200" />
-          <line x1="66" y1="66" x2="102" y2="102" />
-          <line x1="334" y1="66" x2="298" y2="102" />
-          <line x1="66" y1="334" x2="102" y2="298" />
-          <line x1="334" y1="334" x2="298" y2="298" />
-        </g>
-        <defs>
-          <radialGradient id="sunGradient" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stop-color="#F3D98B"/>
-            <stop offset="100%" stop-color="#C1502E"/>
-          </radialGradient>
-        </defs>
-      </svg>
-      <svg class="skyline" viewBox="0 0 1200 220" preserveAspectRatio="none" aria-hidden="true">
-        <rect x="0" y="140" width="70" height="80" fill="#0A2B2C"/>
-        <rect x="80" y="100" width="55" height="120" fill="#0A2B2C"/>
-        <path d="M150 120 h60 v100 h-60 z M158 120 a10 12 0 0 1 20 0 M182 120 a10 12 0 0 1 20 0" fill="#0A2B2C" stroke="#0A2B2C" stroke-width="1"/>
-        <rect x="225" y="80" width="40" height="140" fill="#0A2B2C"/>
-        <rect x="280" y="150" width="90" height="70" fill="#0A2B2C"/>
-        <rect x="300" y="160" width="14" height="20" fill="#123f40" />
-        <rect x="326" y="160" width="14" height="20" fill="#123f40" />
-        <rect x="352" y="160" width="14" height="20" fill="#123f40" />
-        <rect x="390" y="60" width="50" height="160" fill="#0A2B2C"/>
-        <rect x="455" y="110" width="65" height="110" fill="#0A2B2C"/>
-        <path d="M535 110 h70 v110 h-70 z M545 110 a15 16 0 0 1 30 0 M582 110 a12 14 0 0 1 24 0" fill="#0A2B2C"/>
-        <rect x="620" y="70" width="45" height="150" fill="#0A2B2C"/>
-        <rect x="680" y="130" width="80" height="90" fill="#0A2B2C"/>
-        <rect x="775" y="95" width="60" height="125" fill="#0A2B2C"/>
-        <path d="M850 95 h60 v125 h-60 z M860 95 a10 12 0 0 1 20 0 M885 95 a10 12 0 0 1 20 0" fill="#0A2B2C"/>
-        <rect x="930" y="150" width="70" height="70" fill="#0A2B2C"/>
-        <rect x="1015" y="85" width="55" height="135" fill="#0A2B2C"/>
-        <rect x="1085" y="120" width="50" height="100" fill="#0A2B2C"/>
-        <rect x="1150" y="150" width="50" height="70" fill="#0A2B2C"/>
-      </svg>
-      <div class="tile-band" role="presentation"></div>
+    <div class="hero-texture" aria-hidden="true"></div>
+
+    <svg class="hero-glyph" id="hero-glyph" viewBox="0 0 600 600" aria-hidden="true" focusable="false">
+      <text x="560" y="470" text-anchor="end" class="hero-glyph-text">سلسلة</text>
+    </svg>
+
+    <div class="hero-ribbon" aria-hidden="true">
+      <div class="hero-ribbon-track">
+        <span>MEZZE</span><span class="hero-ribbon-dot">✦</span>
+        <span lang="ar" dir="rtl">مقبلات</span><span class="hero-ribbon-dot">✦</span>
+        <span>MASHAWI</span><span class="hero-ribbon-dot">✦</span>
+        <span lang="ar" dir="rtl">مشاوي</span><span class="hero-ribbon-dot">✦</span>
+        <span>HALAWIYAT</span><span class="hero-ribbon-dot">✦</span>
+        <span lang="ar" dir="rtl">حلويات</span><span class="hero-ribbon-dot">✦</span>
+        <span>MASHROUBAT</span><span class="hero-ribbon-dot">✦</span>
+        <span lang="ar" dir="rtl">مشروبات</span><span class="hero-ribbon-dot">✦</span>
+        <span>MEZZE</span><span class="hero-ribbon-dot">✦</span>
+        <span lang="ar" dir="rtl">مقبلات</span><span class="hero-ribbon-dot">✦</span>
+        <span>MASHAWI</span><span class="hero-ribbon-dot">✦</span>
+        <span lang="ar" dir="rtl">مشاوي</span><span class="hero-ribbon-dot">✦</span>
+        <span>HALAWIYAT</span><span class="hero-ribbon-dot">✦</span>
+        <span lang="ar" dir="rtl">حلويات</span><span class="hero-ribbon-dot">✦</span>
+        <span>MASHROUBAT</span><span class="hero-ribbon-dot">✦</span>
+        <span lang="ar" dir="rtl">مشروبات</span><span class="hero-ribbon-dot">✦</span>
+      </div>
     </div>
 
     <div class="container hero-content">
-      <p class="eyebrow reveal">Mar Mikhael · Beirut · Est. 2016</p>
       <h1 class="hero-title reveal">
         <span class="hero-title-en">Silsila</span>
         <span class="hero-title-ar" lang="ar" dir="rtl">سلسلة</span>
       </h1>
+      <p class="eyebrow reveal">Mar Mikhael · Beirut · Est. 2016</p>
       <p class="hero-tagline reveal">A chain of hands, a table for everyone.</p>
       <p class="hero-desc reveal">Every dish on this menu belongs to someone — a grandmother, a neighbor, a boy who sold coffee on Rue Gouraud. We just kept the chain going.</p>
       <div class="hero-actions reveal">
@@ -115,7 +93,8 @@
     </div>
 
     <a href="#story" class="scroll-cue" aria-label="Scroll to our story">
-      <span></span>
+      <span class="scroll-cue-label">Scroll</span>
+      <span class="scroll-cue-line" aria-hidden="true"></span>
     </a>
   </section>
 
